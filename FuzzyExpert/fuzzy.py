@@ -1,4 +1,4 @@
-def member_value(a, b, c, x):
+def triangle_member(a, b, c, x):
     if x <= a:
         return round(float(0.0), 3)
     elif a <= x <= b:
@@ -9,13 +9,27 @@ def member_value(a, b, c, x):
         return round(float(0.0), 3)
 
 
+def trapezoid_member(a, b, c, d, x):
+    if x <= a:
+        return float(0.0)
+    elif a <= x <= b:
+        return round(float(x - a) / (b - a), 3)
+    elif b <= x <= c:
+        return float(1.0)
+    elif c <= x <= d:
+        return round(float(d - x) / (d - c), 3)
+    elif d <= x:
+        return float(0.0)
+
+
 def credit_low(credit_input):
-    a = 300
+    a = 250
     b = 300
-    c = 500
+    c = 400
+    d = 500
     x = credit_input
 
-    return member_value(a, b, c, x)
+    return trapezoid_member(a, b, c, d, x)
 
 
 def credit_mid(credit_input):
@@ -24,25 +38,27 @@ def credit_mid(credit_input):
     c = 700
     x = credit_input
 
-    return member_value(a, b, c, x)
+    return triangle_member(a, b, c, x)
 
 
 def credit_high(credit_input):
     a = 600
-    b = 850
+    b = 800
     c = 850
+    d = 900
     x = credit_input
 
-    return member_value(a, b, c, x)
+    return trapezoid_member(a, b, c, d, x)
 
 
 def amount_low(amount_input):
-    a = 1_000
+    a = 0
     b = 1_000
-    c = 4_000
+    c = 2_000
+    d = 4_000
     x = amount_input
 
-    return member_value(a, b, c, x)
+    return trapezoid_member(a, b, c, d, x)
 
 
 def amount_mid(amount_input):
@@ -51,16 +67,17 @@ def amount_mid(amount_input):
     c = 8_000
     x = amount_input
 
-    return member_value(a, b, c, x)
+    return triangle_member(a, b, c, x)
 
 
 def amount_high(amount_input):
     a = 7_000
-    b = 10_000
+    b = 9_000
     c = 10_000
+    d = 11_000
     x = amount_input
 
-    return member_value(a, b, c, x)
+    return trapezoid_member(a, b, c, d, x)
 
 
 def rules_list(credit_list, amount_list):
@@ -90,7 +107,6 @@ def compare(list_item, vector_list, index):
     y = 0
     x = 0
     z = len(vector_list)
-    value = 0
     list_values = []
     while y < z:
         if x < 9:
